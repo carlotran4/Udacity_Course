@@ -1,6 +1,6 @@
 package Spice
 
-class Spice (var name: String, var spiciness: String = "mild") {
+abstract class Spice (open var name: String, open var spiciness: String = "mild"): SpiceColor {
     val heat:Int?
         get() =
             when(spiciness){
@@ -9,17 +9,43 @@ class Spice (var name: String, var spiciness: String = "mild") {
                 "really spicy" -> 15
                 else -> null
             }
-
    init {
        println(name)
        println(spiciness)
    }
+    abstract fun preparespice()
+}
 
+class Curry(spicelevel:String ):Spice("curry", spicelevel),Grinder{
+    override fun grind() {
+        println("grinding the curry")
+    }
+    override fun preparespice() {
+        println("preparing the curry")
+    }
+    override val color = " yellow"
 
 
 
 }
 
-fun makesalt() {
-    val salt = Spice("salt", "mild")
+interface Grinder{
+    fun grind()
 }
+
+interface SpiceColor {
+    val color :String
+}
+
+object YellowSpiceColor: SpiceColor{
+    override val color = "yellow"
+}
+
+
+
+
+//fun makesalt() {
+//    val salt = Spice("salt", "mild")
+//}
+
+
