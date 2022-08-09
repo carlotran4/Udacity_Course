@@ -1,10 +1,24 @@
 package book
 
+const val maxbooks = 3
+
+
 open class Book(open val author:String = " ", open val title: String= " ") {
     open var currentpage: Int = 0
     open val multiplier: Int = 1
+    fun canBorrow(numofbooks:Int=0): Boolean{
+        return when{
+            numofbooks>=maxbooks -> false
+            else -> true
+        }
+    }
+    companion object Constants{
+        const val BASE_URL = "https://library/"
+    }
 
-
+    fun printUrl(){
+        println("$BASE_URL$title.html")
+    }
 }
 
 fun Readpage(bookvar:Book){
