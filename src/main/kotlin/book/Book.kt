@@ -3,7 +3,7 @@ package book
 const val maxbooks = 3
 
 
-open class Book(open val author:String = " ", open val title: String= " ") {
+open class Book(open val author:String = " ", open val title: String= " ", open var pages:Int = 0) {
     open var currentpage: Int = 0
     open val multiplier: Int = 1
     fun canBorrow(numofbooks:Int=0): Boolean{
