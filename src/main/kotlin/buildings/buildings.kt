@@ -25,5 +25,12 @@ class Building <T: BaseBuildingMaterial>(val material: BaseBuildingMaterial){
 
 fun main(){
     val whitehouse:Building<BaseBuildingMaterial> = Building(BaseBuildingMaterial())
-    whitehouse.build()
+    fun <T:BaseBuildingMaterial> isSmallBuilding(building:Building<T>){
+        when{
+            building.actualMaterialsNeeded<=500 -> println("small")
+            building.actualMaterialsNeeded>500 -> println("large")
+        }
+
+    }
+    isSmallBuilding(whitehouse)
 }
