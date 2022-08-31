@@ -34,4 +34,6 @@ fun main(){
     west(mygame)
     end(mygame)
     println(mygame.path)
+
+
 }
