@@ -11,7 +11,18 @@ enum class Directions {
 
 class Game {
     var path = mutableListOf<Directions>(Directions.START)
-
+    fun move(where: (Game) -> Unit){
+        where
+    }
+    fun makemove(string: String?){
+        when(string){
+            "east" -> move(east)
+            "west" -> move(west)
+            "north" -> move(north)
+            "south" -> move(south)
+            else -> move(end)
+        }
+    }
 }
     val east = {game:Game -> game.path+=Directions.EAST}
     val west = {game:Game -> game.path+=Directions.WEST}
@@ -21,19 +32,17 @@ class Game {
                game.path+=Directions.END
                 println("game over: Path = ${game.path}")
                 game.path = mutableListOf()
-                false
+
     }
 
 
 fun main(){
    val mygame = Game()
-    print(mygame.path)
-    north(mygame)
-    east(mygame)
-    south(mygame)
-    west(mygame)
-    end(mygame)
-    println(mygame.path)
-
+    println("Enter a direction: north,south,east,west")
+    while(true) {
+        val str = readLine()
+        mygame.makemove(str)
+        println(mygame.path)
+    }
 
 }
